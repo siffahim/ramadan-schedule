@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .hero-bg {
-  background: linear-gradient(#0a7352cb, #0a7352bb), url("/images/bg.jpg");
+  background: linear-gradient(#0a7352da, #0a7352ee), url("/images/bg.jpg");
 }
