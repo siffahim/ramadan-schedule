@@ -43,9 +43,9 @@ const Division = () => {
                   <FaMosque size={30} />
                 </h2>
               </div>
-              <div className="flex  items-center relative">
+              <div className="flex  items-center relative ">
                 <div className="w-8 h-8 p-7 bg-secondary rotate-45 rounded"></div>
-                <h2 className="text-sm left-0 absolute text-white">{item}</h2>
+                <h2 className="text-lg absolute text-white">{item}</h2>
               </div>
             </div>
             <div className="flex justify-between items-center mt-7">
