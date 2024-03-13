@@ -13,66 +13,49 @@ const Division = () => {
     "সিলেট",
     "রংপুর",
   ];
-  // const data = [
-  //   "Dhaka",
-  //   "Chattogram",
-  //   "Rajshahi",
-  //   "Mymensingh",
-  //   "খুলনা",
-  //   "বরিশাল ",
-  //   "সিলেট",
-  //   "রংপুর",
-  // ];
-  const x = [
-    {
-      division: "Dhaka",
-      data: [
-        {
-          day: 1,
-          ifter: 4,
-          sheri: 3,
-          date: "2024",
-        },
-      ],
-    },
+  const data2 = [
+    "Dhaka",
+    "Chittagong",
+    "Rajshahi",
+    "Mymensingh",
+    "Khulna",
+    "Barisal",
+    "Sylhet",
+    "Rangpur",
   ];
+
   return (
     <div className="my-10 pb-24">
-      <h2
-        className="text-center text-3xl mb-10 "
-        style={{ fontFamily: "bangla" }}
-      >
-        আজকের ইফতার ও সাহরির সময়{" "}
-      </h2>
+      <h2 className="text-center text-3xl mb-10 ">আজকের ইফতার ও সাহরির সময় </h2>
       <div className="grid grid-cols-4 container gap-4">
-        {data.map((item) => (
-          <div key={item} className="card p-5 rounded">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center relative">
-                <div className="w-8 h-8 p-7 bg-primary rotate-45 rounded"></div>
-                <h2 className="text-sm absolute left-3 text-white ">
-                  {" "}
-                  <FaMosque size={30} />
-                </h2>
-              </div>
-              <Link href={`/divisions/${item}`}>
+        {data.map((item, index) => (
+          <Link key={item} href={`/divisions/${data2[index]}`}>
+            <div className="card p-5 rounded hover:bg-secondary">
+              <div className="flex justify-between items-center">
                 <div className="flex items-center relative">
                   <div className="w-8 h-8 p-7 bg-primary rotate-45 rounded"></div>
-                  <h2 className="text-sm left-0 absolute text-white">{item}</h2>
+                  <h2 className="text-sm absolute left-3 text-white ">
+                    {" "}
+                    <FaMosque size={30} />
+                  </h2>
                 </div>
-              </Link>
-            </div>
-            <div className="flex justify-between items-center mt-7">
-              <div>
-                <h2>ইফতার</h2>
-                <h2>সাহরি</h2>
+                <div className="flex  items-center relative ">
+                  <div className="w-8 h-8 p-7 bg-primary rotate-45 rounded"></div>
+                  <h2 className="text-lg absolute text-white">{item}</h2>
+                </div>
               </div>
-              <div>
-                <h2>৫:১৫ pm</h2>
-                <h2>৬:৪০ am</h2>
+              <div className="flex justify-between items-center mt-6 text-lg">
+                <div>
+                  <h2>ইফতার</h2>
+                  <h2>সাহরি</h2>
+                </div>
+                <div>
+                  <h2>৫:১৫</h2>
+                  <h2>৬:৪০</h2>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

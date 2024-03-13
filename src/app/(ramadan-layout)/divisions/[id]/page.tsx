@@ -1,7 +1,9 @@
+import RamadanTimes from "@/components/Divisions/RamadanTimes";
+
 const RamadanDetail = () => {
   return (
-    <div>
-      <h2>Details</h2>
+    <div className="mb-16">
+      <RamadanTimes />
     </div>
   );
 };
