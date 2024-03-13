@@ -1,10 +1,22 @@
 "use client";
 
 const HeroSection = () => {
+  const prayerTimes = [
+    { name: "ফজর", time: "ভোরে" },
+    { name: "যোহর", time: "দুপুর" },
+    { name: "আসর", time: "রাতে" },
+    { name: "মাগরিব", time: "সন্ধ্যা" },
+    { name: "ইশা", time: "রাতে" },
+  ];
   return (
     <div>
+<<<<<<< HEAD
       <div className="hero-bg h-80">
         <div className="container  text-center">
+=======
+      <div className="hero-bg relative">
+        <div className="container pb-16 flex justify-center items-center text-center">
+>>>>>>> 032abc173848990cc843c37b7d37093f49af029a
           <div>
             <img
               className="mx-auto w-[400px]"
@@ -23,8 +35,18 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-      <div className="w-2/3 h-28 container shadow rounded -mt-14 bg-white z-50 p-5 flex items-center justify-center">
-        <h1 className="text-4xl font-light">11:00:50 AM</h1>
+      <div className="p-2 container rounded -mt-10 bg-white z-50">
+        <div className="grid grid-cols-5 gap-2">
+          {prayerTimes.map((item, index) => (
+            <div
+              key={index}
+              className="bg-secondary text-white p-3  rounded text-center"
+            >
+              <p className="text-lg">{item.name}</p>
+              <h2 className="text-xl">৫:০০</h2>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

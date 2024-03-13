@@ -55,21 +55,28 @@ const Division = () => {
                   <FaMosque size={30} />
                 </h2>
               </div>
+<<<<<<< HEAD
               <Link href={`/divisions/${item}`}>
                 <div className="flex items-center relative">
                   <div className="w-8 h-8 p-7 bg-primary rotate-45 rounded"></div>
                   <h2 className="text-sm left-0 absolute text-white">{item}</h2>
                 </div>
               </Link>
+=======
+              <div className="flex  items-center relative ">
+                <div className="w-8 h-8 p-7 bg-secondary rotate-45 rounded"></div>
+                <h2 className="text-lg absolute text-white">{item}</h2>
+              </div>
+>>>>>>> 032abc173848990cc843c37b7d37093f49af029a
             </div>
-            <div className="flex justify-between items-center mt-7">
+            <div className="flex justify-between items-center mt-6 text-lg">
               <div>
                 <h2>ইফতার</h2>
                 <h2>সাহরি</h2>
               </div>
               <div>
-                <h2>৫:১৫ pm</h2>
-                <h2>৬:৪০ am</h2>
+                <h2>৫:১৫</h2>
+                <h2>৬:৪০</h2>
               </div>
             </div>
           </div>
