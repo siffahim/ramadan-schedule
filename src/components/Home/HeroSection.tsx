@@ -3,10 +3,14 @@
 const HeroSection = () => {
   return (
     <div>
-      <div className="hero-bg relative">
-        <div className="container pb-28 flex justify-center items-center text-center">
+      <div className="hero-bg h-80">
+        <div className="container  text-center">
           <div>
-            <img className="mx-auto" src="/images/ramadan.png" alt="" />
+            <img
+              className="mx-auto w-[400px]"
+              src="/images/ramadan.png"
+              alt=""
+            />
             <h2 className="text-white text-lg">
               شَهۡرُ رَمَضَانَ ٱلَّذِیۤ أُنزِلَ فِیهِ ٱلۡقُرۡءَانُ هُدࣰى
               لِّلنَّاسِ وَبَیِّنَـٰتࣲ مِّنَ ٱلۡهُدَىٰ وَٱلۡفُرۡقَانِۚ فَمَن

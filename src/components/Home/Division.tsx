@@ -1,3 +1,5 @@
+"use client";
+import Link from "next/link";
 import { FaMosque } from "react-icons/fa";
 
 const Division = () => {
@@ -11,6 +13,16 @@ const Division = () => {
     "সিলেট",
     "রংপুর",
   ];
+  // const data = [
+  //   "Dhaka",
+  //   "Chattogram",
+  //   "Rajshahi",
+  //   "Mymensingh",
+  //   "খুলনা",
+  //   "বরিশাল ",
+  //   "সিলেট",
+  //   "রংপুর",
+  // ];
   const x = [
     {
       division: "Dhaka",
@@ -37,16 +49,18 @@ const Division = () => {
           <div key={item} className="card p-5 rounded">
             <div className="flex justify-between items-center">
               <div className="flex items-center relative">
-                <div className="w-8 h-8 p-7 bg-secondary rotate-45 rounded"></div>
+                <div className="w-8 h-8 p-7 bg-primary rotate-45 rounded"></div>
                 <h2 className="text-sm absolute left-3 text-white ">
                   {" "}
                   <FaMosque size={30} />
                 </h2>
               </div>
-              <div className="flex  items-center relative">
-                <div className="w-8 h-8 p-7 bg-secondary rotate-45 rounded"></div>
-                <h2 className="text-sm left-0 absolute text-white">{item}</h2>
-              </div>
+              <Link href={`/divisions/${item}`}>
+                <div className="flex items-center relative">
+                  <div className="w-8 h-8 p-7 bg-primary rotate-45 rounded"></div>
+                  <h2 className="text-sm left-0 absolute text-white">{item}</h2>
+                </div>
+              </Link>
             </div>
             <div className="flex justify-between items-center mt-7">
               <div>
