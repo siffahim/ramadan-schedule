@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
 import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
-import { BiBook, BiMessageSquareDetail } from "react-icons/bi";
-import { RiServiceLine } from "react-icons/ri";
+import { BiBook } from "react-icons/bi";
 
 const Navbar = () => {
   const [activeNav, setActiveNav] = useState("#");
@@ -28,20 +27,6 @@ const Navbar = () => {
         className={activeNav === "#experience" ? "active" : ""}
       >
         <BiBook></BiBook>
-      </a>
-      <a
-        href="#portfolio"
-        onClick={() => setActiveNav("#portfolio")}
-        className={activeNav === "#portfolio" ? "active" : ""}
-      >
-        <RiServiceLine></RiServiceLine>
-      </a>
-      <a
-        href="#contact"
-        onClick={() => setActiveNav("#contact")}
-        className={activeNav === "#contact" ? "active" : ""}
-      >
-        <BiMessageSquareDetail></BiMessageSquareDetail>
       </a>
     </nav>
   );
