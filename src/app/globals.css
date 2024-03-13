@@ -3,6 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: bangla;
+  src: url("/fonts/Rajon_Shoily.ttf");
+}
+
 h2,
 h1 {
   font-family: bangla !important;
@@ -12,6 +17,7 @@ h1 {
   background: linear-gradient(#0c9678b3, #0c9678), url("/images/bg.jpg");
   background-size: cover;
   z-index: -999;
+  background-position: center;
 }
 
 nav {

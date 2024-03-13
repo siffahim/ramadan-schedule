@@ -48,14 +48,14 @@ const Division = () => {
                 <h2 className="text-lg absolute text-white">{item}</h2>
               </div>
             </div>
-            <div className="flex justify-between items-center mt-7">
+            <div className="flex justify-between items-center mt-6 text-lg">
               <div>
                 <h2>ইফতার</h2>
                 <h2>সাহরি</h2>
               </div>
               <div>
-                <h2>৫:১৫ pm</h2>
-                <h2>৬:৪০ am</h2>
+                <h2>৫:১৫</h2>
+                <h2>৬:৪০</h2>
               </div>
             </div>
           </div>
