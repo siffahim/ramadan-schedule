@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaMosque } from "react-icons/fa";
 
 const Division = () => {
@@ -42,16 +42,15 @@ const Division = () => {
   const todayDate = banglaDate.split('/').join('-');
 
 
-  const getData = async () => {
-    const res = await fetch(`https://ramadan-backend.vercel.app/api/ramadan-timings/date-wise?date=${todayDate}`);
-    const data = await res.json();
-    setTodayData(data?.data);
-  };
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch(`https://ramadan-backend.vercel.app/api/ramadan-timings/date-wise?date=${todayDate}`);
+      const data = await res.json();
+      setTodayData(data?.data);
+    };
+    getData()
+  }, [todayDate])
 
-
-  console.log(todateData)
-
-  getData()
 
   return (
     <div className="my-10 pb-24">

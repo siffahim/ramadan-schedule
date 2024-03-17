@@ -1,13 +1,37 @@
 "use client";
 
+import { formatTime } from "@/utils/formatTime";
+import { useEffect, useState } from "react";
+
 const HeroSection = () => {
+
+  const [todateData, setTodayData] = useState([])
+
+  let todayYear = new Date();
+  const year = todayYear.getFullYear();
+  let todayMonth = new Date();
+  const month = todayMonth.getMonth() + 1
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch(`http://api.aladhan.com/v1/calendarByAddress/${year}/${month}?address=Bangladesh`);
+      const data = await res.json();
+      setTodayData(data?.data[0].timings);
+    };
+    getData()
+  }, [year, month])
+
+  console.log(todateData)
+
   const prayerTimes = [
-    { name: "ফজর", time: "ভোরে" },
-    { name: "যোহর", time: "দুপুর" },
-    { name: "আসর", time: "রাতে" },
-    { name: "মাগরিব", time: "সন্ধ্যা" },
-    { name: "ইশা", time: "রাতে" },
+    { name: "ফজর", time: formatTime(todateData?.Fajr) },
+    { name: "যোহর", time: formatTime(todateData?.Dhuhr) },
+    { name: "আসর", time: formatTime(todateData?.Asr) },
+    { name: "মাগরিব", time: formatTime(todateData?.Maghrib) },
+    { name: "ইশা", time: formatTime(todateData?.Isha) },
   ];
+
+
   return (
     <div>
       <div className="hero-bg relative">
@@ -38,7 +62,7 @@ const HeroSection = () => {
               className="bg-primary text-white p-3  rounded text-center"
             >
               <p className="text-lg">{item.name}</p>
-              <h2 className="text-xl">৫:০০</h2>
+              <h2 className="text-xl">{item.time > 12 ? item.time - 12 : item.time}</h2>
             </div>
           ))}
         </div>
