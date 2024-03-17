@@ -25,9 +25,9 @@ const Breadcrumb = () => {
     Rangpur: "রংপুর",
   };
 
-  const url = cityImageMap[param.id as keyof typeof cityImageMap] || "";
+  const url = cityImageMap[param.id[0] as keyof typeof cityImageMap] || "";
   const city =
-    cityBanglaNameMap[param.id as keyof typeof cityBanglaNameMap] || "";
+    cityBanglaNameMap[param.id[0] as keyof typeof cityBanglaNameMap] || "";
 
   return (
     <div className="w-full h-80 relative">
