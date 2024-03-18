@@ -1,5 +1,7 @@
 "use client";
 
+import { format } from "date-fns";
+import { bn } from "date-fns/locale";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -19,23 +21,35 @@ const RamadanTimes = () => {
     getData();
   }, [id]);
 
-  console.log(ramadanData);
+  const englishDigitsToBangla = (englishNumber: string): string => {
+    const banglaDigits: { [key: string]: string } = {
+      "0": "০",
+      "1": "১",
+      "2": "২",
+      "3": "৩",
+      "4": "৪",
+      "5": "৫",
+      "6": "৬",
+      "7": "৭",
+      "8": "৮",
+      "9": "৯",
+    };
 
-  let today = new Date();
-  // Define options for Bangla locale
-  const options = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    timeZone: "UTC",
-    locale: "bn", // Use 'bn' for Bengali (Bangla)
+    return englishNumber.replace(/[0-9]/g, (match) => banglaDigits[match]);
   };
 
-  // Format the date
-  const banglaDate = today.toLocaleDateString("bn-BD", options);
-  const todayDate = banglaDate.split("/").join("-");
+  const getBanglaDate = (englishDate: Date): string => {
+    const formattedEnglishDate = format(englishDate, "dd-MM-yyyy", {
+      locale: bn,
+    });
+    const banglaDate = englishDigitsToBangla(formattedEnglishDate);
+    return banglaDate;
+  };
 
-  const active = todayDate;
+  const today = new Date();
+  const banglaDate = getBanglaDate(today);
+
+  const active = banglaDate;
   return (
     <div className="container">
       <table className="w-full">
@@ -49,11 +63,11 @@ const RamadanTimes = () => {
           </tr>
         </thead>
         <tbody>
-          {ramadanData.map((item, index) => (
+          {ramadanData.map((item: any, index) => (
             <tr
               key={index}
               className={`border ${
-                item.date === active ? "bg-primary text-white text-bold" : ""
+                item?.date === active ? "bg-primary text-white text-bold" : ""
               }`}
             >
               <td className="border-r text-center py-2">{item?.noOfRamadan}</td>
