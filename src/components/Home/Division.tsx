@@ -1,7 +1,13 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaMosque } from "react-icons/fa";
+import { format } from 'date-fns';
+import { bn } from 'date-fns/locale';
+
+interface CustomDateTimeFormatOptions extends Intl.DateTimeFormatOptions {
+  locale: string;
+}
 
 const Division = () => {
   const data = [
@@ -27,31 +33,47 @@ const Division = () => {
 
   const [todateData, setTodayData] = useState([])
 
-  let today = new Date();
-  // Define options for Bangla locale
-  const options = {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    timeZone: 'UTC',
-    locale: 'bn'  // Use 'bn' for Bengali (Bangla)
+
+  const englishDigitsToBangla = (englishNumber: string): string => {
+    const banglaDigits: { [key: string]: string } = {
+      '0': '০',
+      '1': '১',
+      '2': '২',
+      '3': '৩',
+      '4': '৪',
+      '5': '৫',
+      '6': '৬',
+      '7': '৭',
+      '8': '৮',
+      '9': '৯',
+    };
+
+    return englishNumber.replace(/[0-9]/g, (match) => banglaDigits[match]);
   };
 
-  // Format the date
-  const banglaDate = today.toLocaleDateString('bn-BD', options);
-  const todayDate = banglaDate.split('/').join('-');
-
-
-  const getData = async () => {
-    const res = await fetch(`https://ramadan-backend.vercel.app/api/ramadan-timings/date-wise?date=${todayDate}`);
-    const data = await res.json();
-    setTodayData(data?.data);
+  const getBanglaDate = (englishDate: Date): string => {
+    const formattedEnglishDate = format(englishDate, 'dd-MM-yyyy', { locale: bn });
+    const banglaDate = englishDigitsToBangla(formattedEnglishDate);
+    return banglaDate;
   };
 
+  const today = new Date();
+  const banglaDate = getBanglaDate(today);
+  console.log(banglaDate);
 
-  console.log(todateData)
+  // const todayDate = banglaDate.split('/').join('-');
+  // console.log(todayDate, banglaDate)
 
-  getData()
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch(`https://ramadan-backend.vercel.app/api/ramadan-timings/date-wise?date=${banglaDate}`);
+      const data = await res.json();
+      setTodayData(data?.data);
+    };
+    getData()
+  }, [todayDate])
+
 
   return (
     <div className="my-10 pb-24">

@@ -2,6 +2,8 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { format } from 'date-fns';
+import { bn } from 'date-fns/locale';
 
 const RamadanTimes = () => {
   const [ramadanData, setRamadanData] = useState([]);
@@ -24,21 +26,35 @@ const RamadanTimes = () => {
 
   console.log(ramadanData)
 
-  let today = new Date();
-  // Define options for Bangla locale
-  const options = {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    timeZone: 'UTC',
-    locale: 'bn'  // Use 'bn' for Bengali (Bangla)
+  const englishDigitsToBangla = (englishNumber: string): string => {
+    const banglaDigits: { [key: string]: string } = {
+      '0': '০',
+      '1': '১',
+      '2': '২',
+      '3': '৩',
+      '4': '৪',
+      '5': '৫',
+      '6': '৬',
+      '7': '৭',
+      '8': '৮',
+      '9': '৯',
+    };
+
+    return englishNumber.replace(/[0-9]/g, (match) => banglaDigits[match]);
   };
 
-  // Format the date
-  const banglaDate = today.toLocaleDateString('bn-BD', options);
-  const todayDate = banglaDate.split('/').join('-');
+  const getBanglaDate = (englishDate: Date): string => {
+    const formattedEnglishDate = format(englishDate, 'dd-MM-yyyy', { locale: bn });
+    const banglaDate = englishDigitsToBangla(formattedEnglishDate);
+    return banglaDate;
+  };
 
-  const active = todayDate;
+  const today = new Date();
+  const banglaDate = getBanglaDate(today);
+  console.log(banglaDate);
+
+
+  const active = banglaDate;
   return (
     <div className="container">
       <table className="w-full">
@@ -55,7 +71,7 @@ const RamadanTimes = () => {
           {ramadanData.map((item, index) => (
             <tr
               key={index}
-              className={`border ${item.date === active ? "bg-primary text-white text-bold" : ""
+              className={`border ${item?.date === active ? "bg-primary text-white text-bold" : ""
                 }`}
             >
               <td className="border-r text-center py-2">{item?.noOfRamadan}</td>
